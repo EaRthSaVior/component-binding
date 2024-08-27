@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Server } from '../server-element/server.model';
 
 @Component({
@@ -9,22 +15,21 @@ import { Server } from '../server-element/server.model';
 export class CockpitComponent {
   @Output() addServer = new EventEmitter<Server>();
 
-  newServerName = '';
-  newServerContent = '';
+  @ViewChild('serverInput') serverInput: ElementRef;
 
-  onAddServer() {
+  onAddServer(serverContentInput: HTMLInputElement) {
     this.addServer.emit({
       type: 'server',
-      name: this.newServerName,
-      content: this.newServerContent,
+      name: this.serverInput.nativeElement.value,
+      content: serverContentInput.value,
     });
   }
 
-  onAddBlueprint() {
+  onAddBlueprint(serverContentInput: HTMLInputElement) {
     this.addServer.emit({
       type: 'blueprint',
-      name: this.newServerName,
-      content: this.newServerContent,
+      name: this.serverInput.nativeElement.value,
+      content: serverContentInput.value,
     });
   }
 }
