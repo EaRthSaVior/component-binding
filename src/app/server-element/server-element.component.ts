@@ -1,4 +1,10 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Server } from './server.model';
 
 @Component({
@@ -9,4 +15,9 @@ import { Server } from './server.model';
 })
 export class ServerElementComponent {
   @Input('srvElement') element: Server;
+  @ContentChild('content', { static: true }) content: ElementRef;
+
+  ngOnInit() {
+    console.log(this.content);
+  }
 }

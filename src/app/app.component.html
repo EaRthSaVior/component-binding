@@ -9,7 +9,7 @@
     <div class="col-xs-12">
       <div class="panel panel-default" *ngFor="let element of serverElements">
         <app-server-element [srvElement]="element">
-          <p>
+          <p #content>
             <strong *ngIf="element.type === 'server'" style="color: red">{{
               element.content
             }}</strong>
